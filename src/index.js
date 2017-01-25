@@ -5,6 +5,11 @@ export default function (config) {
   config = {...config}
 
   const plugins = {}
+  if (config.plugins) {
+    config.plugins.forEach((plugin, index) => {
+      plugins[index] = plugin
+    })
+  }
 
   function loader(ext, handler) {
     let test
