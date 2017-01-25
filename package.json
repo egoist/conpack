@@ -13,7 +13,7 @@
   "scripts": {
     "test": "jest && npm run lint && npm run build",
     "lint": "xo src/*.js",
-    "build": "bili"
+    "build": "bili --js babel"
   },
   "author": "egoist <0x142857@gmail.com>",
   "license": "MIT",
