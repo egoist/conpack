@@ -1,76 +1,66 @@
-import isEqualRegex from 'is-equal-regex'
-import dotProp from 'dot-prop'
+import ChainMap from './chain-map'
+import ChainSet from './chain-set'
+import Output from './output'
+import Module from './module'
+import Resolve from './resolve'
+import ResolveLoader from './resolve-loader'
+import Plugin from './plugin'
 
-export default function (config) {
-  config = {...config}
-
-  const plugins = {}
-  if (config.plugins) {
-    config.plugins.forEach((plugin, index) => {
-      plugins[index] = plugin
-    })
+class Config {
+  constructor() {
+    this.options = new ChainMap(this)
+    this.entries = new ChainMap(this)
+    this.output = new Output(this)
+    this.module = new Module(this)
+    this.resolve = new Resolve(this)
+    this.resolveLoader = new ResolveLoader(this)
+    this.plugins = new ChainMap(this)
   }
 
-  function loader(ext, handler) {
-    let test
-    if (ext instanceof RegExp) {
-      test = ext
-    } else if (ext.charAt(0) === '.') {
-      test = new RegExp(`${ext}$`.replace(/\./g, '\\$&'))
-    } else {
-      test = getExtensionByType(ext)
+  entry(name) {
+    if (!this.entries.has(name)) {
+      this.entries.set(name, new ChainSet(this))
     }
-    const oldRules = dotProp.get(config, 'module.rules', [])
-    const rule = findRuleByTest(oldRules, test) || {test}
-    const newRule = typeof handler === 'function' ?
-      handler(rule) :
-      {...rule, ...handler}
-    const newRules = replaceRuleByTest(oldRules, test, newRule)
-    dotProp.set(config, 'module.rules', newRules)
+    return this.entries.get(name)
   }
 
-  function plugin(id, pluginInstance) {
-    plugins[id] = pluginInstance
-    config.plugins = Object.keys(plugins).map(id => plugins[id])
+  plugin(name) {
+    if (!this.plugins.has(name)) {
+      this.plugins.set(name, new Plugin(this))
+    }
+    return this.plugins.get(name)
   }
 
-  return {
-    loader,
-    plugin,
-    get webpackConfig() {
-      return config
+  devtool(devtool) {
+    this.options.set('devtool', devtool)
+  }
+
+  target(target) {
+    this.options.set('target', target)
+  }
+
+  context(context) {
+    this.options.set('context', context)
+  }
+
+  toConfig() {
+    const entries = this.entries.entries()
+    return {
+      entry: entries && Object.keys(entries)
+        .reduce((curr, next) => {
+          curr[next] = entries[next].values()
+          return curr
+        }, {}),
+      output: this.output.entries(),
+      module: this.module.toConfig(),
+      resolve: this.resolve.toConfig(),
+      resolveLoader: this.resolveLoader.toConfig(),
+      plugins: this.plugins.values().map(plugin => plugin.toConfig()),
+      ...this.options.entries()
     }
   }
 }
 
-function findRuleByTest(rules, test) {
-  return rules.filter(rule => {
-    return isEqualRegex(rule.test, test)
-  })[0]
-}
+module.exports = new Config()
 
-function replaceRuleByTest(rules, test, newRule) {
-  let has
-  const newRules = rules.map(rule => {
-    if (isEqualRegex(rule.test, test)) {
-      has = true
-      return newRule
-    }
-    return rule
-  })
-  if (has) {
-    return newRules
-  }
-  return rules.concat(newRule)
-}
-
-function getExtensionByType(type) {
-  const types = {
-    css: /\.css$/,
-    image: /\.(jpg|png|gif|webp)$/,
-    html: /\.html$/,
-    jade: /\.(jade|pug)$/,
-    vue: /\.vue$/
-  }
-  return types[type]
-}
+module.exports.Config = Config

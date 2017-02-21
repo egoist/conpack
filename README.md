@@ -13,58 +13,35 @@ yarn add conpack --dev
 ## Usage
 
 ```js
-// webpack.config.js
-const conpack = require('conpack')
+const config = requrie('conpack')
 
-const config = conpack()
-// you can also give an initial webpack config
-// conpack(webpackConfig)
+config
+  .entry('client')
+    .add('./src/index.js')
+    .end()
+  .output
+    .filename('[name].js')
+    .path(process.cwd())
+    .end()
+  .module
+    .rule('compile:js')
+      .test(/\.jsx?$/)
+      .loader('babel', 'babel-loader', {
+        presets: ['es2015']
+      })
+      .end()
+    .end()
 
-// .css or /\.css$/
-config.loader('.css', rule => {
-  rule.loader = 'style-loader!css-loader!postcss-loader'
-  return rule
-})
-
-config.plugin('html', new HtmlWebpackPlugin({title: 'old'}))
-// change the html plugin by id
-config.plugin('html', new HtmlWebpackPlugin({title: 'new'}))
-
-module.exports = config.webpackConfig
+// you can lazy-change the loader by namespace `babel`
+config
+  .module
+    .rule('compile:js')
+      .loader('babel', 'babel-loader', {
+        presets: ['latest']
+      })
+      .end()
+    .end()
 ```
-
-## API
-
-### .loader(extension, handler)
-
-#### extension
-
-Type: `string` `RegExp`
-
-Something like `.css` or `/\.css$/`
-
-#### handler(rule)
-
-##### rule
-
-Type: `object`<br>
-Default: `{test}`
-
-Matched rule by given `extension`, you can modify it and return the updated rule. If it does not exist, the new rule will be appended.
-
-### .plugin(id, plugin)
-
-#### id
-
-Type: `string`
-
-The id for the plugin to be added.
-
-#### plugin
-
-Type: `object`
-
-The webpack plugin instance, for example: `new HtmlWebpackPlugin()`
 
 ## Contributing
 

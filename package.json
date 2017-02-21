@@ -20,10 +20,37 @@
   "jest": {
     "testEnvironment": "node"
   },
+  "babel": {
+    "presets": [
+      [
+        "latest",
+        {
+          "es2015": {
+            "modules": false
+          }
+        }
+      ],
+      "stage-2"
+    ],
+    "plugins": [
+      "external-helpers"
+    ],
+    "env": {
+      "test": {
+        "presets": [
+          "latest",
+          "stage-2"
+        ]
+      }
+    }
+  },
   "devDependencies": {
     "babel-jest": "^18.0.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-es2015": "^6.22.0",
     "babel-preset-latest": "^6.22.0",
     "babel-preset-stage-2": "^6.22.0",
+    "babel-register": "^6.23.0",
     "bili": "^0.12.0",
     "jest-cli": "^18.1.0",
     "rollup-plugin-babel": "^2.7.1",
@@ -40,7 +67,9 @@
   },
   "dependencies": {
     "dot-prop": "^4.1.0",
-    "is-equal-regex": "^0.1.0"
+    "is-equal-regex": "^0.1.0",
+    "map-to-obj": "^0.2.0",
+    "serialize-javascript": "^1.3.0"
   },
   "engine": {
     "node": ">=4"
