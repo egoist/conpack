@@ -22,7 +22,7 @@ config
 
 #### .add(path)
 
-A path to specific entry.
+Add path to specific entry.
 
 ```js
 config
