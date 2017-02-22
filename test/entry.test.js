@@ -78,4 +78,18 @@ describe('entry', () => {
       client: []
     })
   })
+
+  it('clear all paths in namespace', () => {
+    const config = new Config()
+
+    config
+      .entry('client')
+        .add('haha')
+        .clear()
+        .end()
+
+    expect(config.toConfig().entry).toEqual({
+      client: []
+    })
+  })
 })

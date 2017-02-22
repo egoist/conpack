@@ -9,6 +9,11 @@ export default class ChainSet {
     return this
   }
 
+  clear() {
+    this.collection.clear()
+    return this
+  }
+
   add(value) {
     this.collection.add(value)
     return this
