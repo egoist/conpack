@@ -19,11 +19,6 @@ export default class ChainMap {
     return this.options.has(key)
   }
 
-  set(key, value) {
-    this.options.set(key, value)
-    return this
-  }
-
   keys() {
     return this.options.keys()
   }

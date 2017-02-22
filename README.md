@@ -12,6 +12,8 @@ yarn add conpack --dev
 
 ## Usage
 
+In your `webpack.config.js`:
+
 ```js
 const config = requrie('conpack')
 
@@ -41,6 +43,8 @@ config
       })
       .end()
     .end()
+
+module.exports = config.toConfig()
 ```
 
 ## Contributing

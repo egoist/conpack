@@ -4,6 +4,11 @@ export default class ChainSet {
     this.collection = new Set()
   }
 
+  delete(value) {
+    this.collection = new Set([...this.collection].filter(v => value !== v))
+    return this
+  }
+
   add(value) {
     this.collection.add(value)
     return this

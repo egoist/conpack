@@ -6,7 +6,7 @@ import Resolve from './resolve'
 import ResolveLoader from './resolve-loader'
 import Plugin from './plugin'
 
-class Config {
+export default class Config {
   constructor() {
     this.options = new ChainMap(this)
     this.entries = new ChainMap(this)
@@ -60,7 +60,3 @@ class Config {
     }
   }
 }
-
-module.exports = new Config()
-
-module.exports.Config = Config

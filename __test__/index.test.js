@@ -1,1 +1,0 @@
-import conpack from '../src'
