@@ -15,7 +15,7 @@ yarn add conpack --dev
 In your `webpack.config.js`:
 
 ```js
-const config = requrie('conpack')
+const config = require('conpack')
 
 config
   .entry('client')
