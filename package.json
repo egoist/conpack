@@ -1,6 +1,6 @@
 {
   "name": "conpack",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Simple webpack config manager.",
   "repository": {
     "url": "egoist/conpack",
