@@ -3,9 +3,34 @@
 [![NPM version](https://img.shields.io/npm/v/conpack.svg?style=flat)](https://npmjs.com/package/conpack) [![NPM downloads](https://img.shields.io/npm/dm/conpack.svg?style=flat)](https://npmjs.com/package/conpack) [![Build Status](https://img.shields.io/circleci/project/egoist/conpack/master.svg?style=flat)](https://circleci.com/gh/egoist/conpack) [![codecov](https://codecov.io/gh/egoist/conpack/branch/master/graph/badge.svg)](https://codecov.io/gh/egoist/conpack)
  [![donate](https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&style=flat)](https://github.com/egoist/donate)
 
-## Install
+## How does this look like?
 
-⚠ This module is still at **early stage**.
+```js
+module.exports = config
+  .entry('client')
+    .add('./src/index.js')
+    .end()
+  .toConfig()
+```
+
+## Why
+
+You may wonder why we need an abstraction of the webpack API, here's the reason:
+
+> "Finally, webpack config done right. (...) Webpack clearly wants to stay low-level. So it makes total sense to outsource configuring it to well designed blocks instead of copy-paste." 
+>
+> —— [Dan Abramov](https://github.com/gaearon) via [Twitter](https://twitter.com/dan_abramov/status/806249934399881216)
+
+But that is toward [webpack-blocks](https://github.com/andywer/webpack-blocks) which uses [webpack-merge](https://github.com/survivejs/webpack-merge) under the hood, but still, [webpack-merge has its downsides](https://github.com/andywer/webpack-blocks/issues/34):
+
+- it's hard to update existing loaders
+- it's hard to update existing plugins
+- it's hard to update the options of exising loaders and plugins
+- etc.
+
+The solution definitely needs to be a higher level API than webpack-merge.
+
+## Install
 
 ```bash
 yarn add conpack --dev
