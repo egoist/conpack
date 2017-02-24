@@ -2,7 +2,14 @@ import ChainMap from './chain-map'
 
 export default class Plugin extends ChainMap {
   use(PluginClass, ...options) {
-    this._plugin = typeof PluginClass === 'function' ? new PluginClass(...options) : PluginClass
+    this.PluginClass = PluginClass
+    this._options = options
+    this._plugin = new PluginClass(...options)
+    return this
+  }
+
+  update(handler) {
+    this._plugin = new this.PluginClass(typeof handler === 'function' ? handler(...this._options) : handler)
     return this
   }
 
