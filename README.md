@@ -73,7 +73,7 @@ config
 module.exports = config.toConfig()
 ```
 
-For more usages please refer to [tests](/tests), docs are coming soon.
+For more usages please refer to [tests](/test), docs are coming soon.
 
 ## Contributing
 
