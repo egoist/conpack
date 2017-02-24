@@ -21,7 +21,7 @@ You may wonder why we need an abstraction of the webpack API, here's the reason:
 >
 > —— [Dan Abramov](https://github.com/gaearon) via [Twitter](https://twitter.com/dan_abramov/status/806249934399881216)
 
-But that is toward [webpack-blocks](https://github.com/andywer/webpack-blocks) which uses [webpack-merge](https://github.com/survivejs/webpack-merge) under the hood, but still, [webpack-merge has its downsides](https://github.com/andywer/webpack-blocks/issues/34):
+But that is towards [webpack-blocks](https://github.com/andywer/webpack-blocks) which uses [webpack-merge](https://github.com/survivejs/webpack-merge) under the hood, but still, [webpack-merge has its downsides](https://github.com/andywer/webpack-blocks/issues/34):
 
 - it's hard to update existing loaders
 - it's hard to update existing plugins
