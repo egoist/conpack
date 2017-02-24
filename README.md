@@ -21,7 +21,7 @@ const config = require('conpack')
 config
   .entry('client')
     .add('./src/index.js')
-    .end()
+    .end() // You need to invoke `.end` to return to parent chain
   .output
     .filename('[name].js')
     .path(process.cwd())
@@ -47,6 +47,8 @@ config
 
 module.exports = config.toConfig()
 ```
+
+For more usages please refer to [tests](/tests), docs are coming soon.
 
 ## Contributing
 
