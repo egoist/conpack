@@ -34,6 +34,16 @@ export default class Rule extends ChainMap {
     return this
   }
 
+  pre() {
+    this.set('enforce', 'pre')
+    return this
+  }
+
+  post() {
+    this.set('enforce', 'post')
+    return this
+  }
+
   exclude(exclude) {
     this.set('exclude', exclude)
     return this
