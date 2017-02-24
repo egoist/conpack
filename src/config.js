@@ -35,18 +35,22 @@ export default class Config {
 
   devtool(devtool) {
     this.options.set('devtool', devtool)
+    return this
   }
 
   target(target) {
     this.options.set('target', target)
+    return this
   }
 
   context(context) {
     this.options.set('context', context)
+    return this
   }
 
   profile(profile) {
     this.options.set('profile', profile)
+    return this
   }
 
   toConfig() {
