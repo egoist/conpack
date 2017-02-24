@@ -44,10 +44,7 @@
     ]
   },
   "dependencies": {
-    "dot-prop": "^4.1.0",
-    "is-equal-regex": "^0.1.0",
-    "map-to-obj": "^0.2.0",
-    "serialize-javascript": "^1.3.0"
+    "map-to-obj": "^0.2.0"
   },
   "engine": {
     "node": ">=4"
