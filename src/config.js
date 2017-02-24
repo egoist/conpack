@@ -11,6 +11,8 @@ export default class Config {
     this.options = new ChainMap(this)
     this.entries = new ChainMap(this)
     this.output = new Output(this)
+    this.node = new ChainMap(this)
+    this.performance = new ChainMap(this)
     this.module = new Module(this)
     this.resolve = new Resolve(this)
     this.resolveLoader = new ResolveLoader(this)
@@ -43,6 +45,10 @@ export default class Config {
     this.options.set('context', context)
   }
 
+  profile(profile) {
+    this.options.set('profile', profile)
+  }
+
   toConfig() {
     const entries = this.entries.entries()
     return {
@@ -52,6 +58,8 @@ export default class Config {
           return curr
         }, {}),
       output: this.output.entries(),
+      node: this.node.entries(),
+      performance: this.performance.entries(),
       module: this.module.toConfig(),
       resolve: this.resolve.toConfig(),
       resolveLoader: this.resolveLoader.toConfig(),
