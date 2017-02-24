@@ -19,13 +19,6 @@ export default class ChainSet {
     return this
   }
 
-  addMany(array) {
-    for (const value of array) {
-      this.add(value)
-    }
-    return this
-  }
-
   prepend(value) {
     this.collection = new Set([value, ...this.collection])
     return this

@@ -22,7 +22,7 @@ export default class Rule extends ChainMap {
     if (this.loaders.has(name)) {
       const current = this.loaders.get(name)
       current.loader = loader
-      current.options = options
+      current.options = typeof options === 'function' ? options(current.options) : options
     } else {
       this.loaders.set(name, new Loader({loader, options}))
     }
