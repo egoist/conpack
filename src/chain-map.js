@@ -31,6 +31,10 @@ export default class ChainMap {
     return [...this.options.values()]
   }
 
+  delete(key) {
+    this.options.delete(key)
+  }
+
   end() {
     return this.parentChain
   }

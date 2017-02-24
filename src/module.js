@@ -4,18 +4,22 @@ import Rule from './rule'
 export default class Module extends ChainMap {
   constructor(parentChain) {
     super(parentChain)
-    this._rules = new ChainMap(this)
+    this.rules = new ChainMap(this)
   }
 
   rule(name) {
-    if (!this._rules.has(name)) {
-      this._rules.set(name, new Rule(this.parentChain))
+    if (!this.rules.has(name)) {
+      this.rules.set(name, new Rule(this))
     }
-    return this._rules.get(name)
+    return this.rules.get(name)
   }
 
   toConfig() {
-    const rules = this._rules.values().map(r => r.toConfig())
-    return {rules}
+    const rules = this.rules.values().map(r => r.toConfig())
+
+    return {
+      rules,
+      ...this.entries()
+    }
   }
 }

@@ -10,7 +10,7 @@ class Loader {
 export default class Rule extends ChainMap {
   constructor(parentChain) {
     super(parentChain)
-    this._loaders = new ChainMap()
+    this.loaders = new ChainMap()
   }
 
   test(re) {
@@ -19,12 +19,12 @@ export default class Rule extends ChainMap {
   }
 
   loader(name, loader, options) {
-    if (this._loaders.has(name)) {
-      const current = this._loaders.get(name)
+    if (this.loaders.has(name)) {
+      const current = this.loaders.get(name)
       current.loader = loader
       current.options = options
     } else {
-      this._loaders.set(name, new Loader({loader, options}))
+      this.loaders.set(name, new Loader({loader, options}))
     }
     return this
   }
@@ -42,7 +42,7 @@ export default class Rule extends ChainMap {
   toConfig() {
     return {
       ...this.entries(),
-      use: this._loaders.values()
+      use: this.loaders.values()
     }
   }
 }
