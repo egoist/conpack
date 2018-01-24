@@ -5,6 +5,81 @@
 
 Manage `rules` and `plugins` in webpack config like a boss.
 
+<details><summary>Use case</summary><br>
+
+Imagine friend A writes a package called `create-babel-webpack-config` that adds `babel-loader` to webpack config:
+
+```js
+module.exports = () => {
+  return {
+    module: {
+      rules: [{
+        loader: 'babel-loader',
+        options: { presets: ['react-app'] }
+      }]
+    }
+  }
+}
+```
+
+Then friend B wants to reuse this package but with some tweaks to use `buble-loader` instead:
+
+```js
+// webpack.config.js
+const createBabelWebpackConfig = require('create-babel-webpack-config')
+
+const webpackConfig = createBabelWebpackConfig()
+
+// Now friend B tries to replace `react-app` with `vue-app`:
+webpackConfig.module.rules = webpackConfig.module.rules.map(rule => {
+  if (rule.test.toString() === '/\\.jsx?$/') {
+    rule.use[0].loader = 'buble-loader'
+    rule.use[0].options = { target: { node: 6 } }
+  }
+  return rule
+})
+
+module.exports = webpackConfig
+```
+
+__THIS IS OBVIOUSLY UGLY!__
+
+Finally friend C shows friend A the power of `conpack`, letting him rewrite `webpack-babel` to followings:
+
+```js
+module.exports = webpackConfig => {
+  const conpack = require('conpack')()
+  const jsRule = conpack.rules.add('js')
+  jsRule.loaders.add('babel', {
+    loader: 'babel-loader',
+    options: {
+      presets: ['react-app']
+    }
+  })
+  return conpack
+}
+```
+
+For friend B, he can find and modify the rules with confidence:
+
+```js
+// webpack.config.js
+const createBabelWebpackConfig = require('create-babel-webpack-config')
+
+const conpack = createBabelWebpackConfig()
+
+const jsRule = conpack.rules.get('js')
+jsRule.loaders.replace('babel', 'buble', {
+  loader: 'buble-loader',
+  options: {
+    target: { node: 6 }
+  }
+})
+
+module.exports = conpack.getConfig()
+```
+</details>
+
 ## Install
 
 ```bash
@@ -108,6 +183,12 @@ conpack.rules.remove('rule-name')
 
 ```js
 conpack.rules.replace('rule-name-to-replace', 'new-rule-name', newOptions)
+```
+
+#### Check if a rule exists
+
+```js
+conpack.rules.has('rule-name')
 ```
 
 ### Loaders

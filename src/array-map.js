@@ -8,6 +8,10 @@ export default class ArrayMap {
     return value
   }
 
+  has(name) {
+    return this.store.has(name)
+  }
+
   prepend(name, options) {
     this.store = [
       [name, options],
