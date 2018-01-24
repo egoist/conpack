@@ -1,0 +1,38 @@
+{
+  "name": "conpack",
+  "version": "0.0.0",
+  "description": "Manage rules and plugins in webpack config like a boss.",
+  "repository": {
+    "url": "egoist/conpack",
+    "type": "git"
+  },
+  "main": "dist/conpack.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "npm run lint && jest",
+    "lint": "xo",
+    "build": "bili --filename conpack.js --buble.target.node 6"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "author": "egoist <0x142857@gmail.com>",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-preset-env": "^1.6.1",
+    "bili": "^1.6.5",
+    "eslint-config-rem": "^3.0.0",
+    "jest": "^22.1.4",
+    "xo": "^0.18.0"
+  },
+  "xo": {
+    "extends": "rem",
+    "envs": ["jest"]
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}

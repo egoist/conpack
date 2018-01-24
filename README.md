@@ -1,0 +1,129 @@
+
+# conpack
+
+[![NPM version](https://img.shields.io/npm/v/conpack.svg?style=flat)](https://npmjs.com/package/conpack) [![NPM downloads](https://img.shields.io/npm/dm/conpack.svg?style=flat)](https://npmjs.com/package/conpack) [![CircleCI](https://circleci.com/gh/egoist/conpack/tree/master.svg?style=shield)](https://circleci.com/gh/egoist/conpack/tree/master)  [![donate](https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&style=flat)](https://github.com/egoist/donate) [![chat](https://img.shields.io/badge/chat-on%20discord-7289DA.svg?style=flat)](https://chat.egoist.moe)
+
+Manage `rules` and `plugins` in webpack config like a boss.
+
+## Install
+
+```bash
+yarn add conpack
+```
+
+## Usage
+
+```js
+// webpack.config.js
+const Conpack = require('conpack')
+
+const conpack = new Conpack()
+
+// Add a rule
+const jsRule = conpack.rules.add('js', {
+  test: /\.jsx?$/
+})
+jsRule.loaders.add('babel', {
+  loader: 'babel-loader',
+  options: {}
+})
+
+// Change loader later by name
+jsRule.loaders.replace('babel', 'buble', {
+  loader: 'buble-loader',
+  options: {}
+})
+
+// Add a plugin
+conpack.plugins.add('uglify', webpack.optimize.UglifyJsPlugin, [
+  {/* options */}
+])
+// Remove a plugin
+conpack.plugins.remove('uglify')
+
+module.exports = {
+  entry: './your-entry.js',
+  module: {
+    rules: conpack.rules.toArray()
+  },
+  plugins: conpack.plugins.toArray()
+}
+```
+
+### Rules
+
+#### Add a rule
+
+```js
+const rule = conpack.rules.add('rule-name', {
+  test: /\.js$/,
+  // ...options (excluding `use`)
+})
+```
+
+#### Prepend a rule
+
+```js
+conpack.rules.append('rule-name', options)
+```
+
+#### Get a rule
+
+```js
+conpack.rules.get('rule-name')
+```
+
+#### Update a rule
+
+```js
+// Always got the rule
+const rule = conpack.rules.get('rule-name')
+rule.update(options => {
+  options.test = /\.ext$/
+  return options
+})
+
+// Or update a rule by name directly
+conpack.rules.update('rule-name', options => newOptions)
+```
+
+#### Remove a rule
+
+```js
+conpack.rules.remove('rule-name')
+```
+
+#### Replace a rule
+
+```js
+conpack.rules.replace('rule-name-to-replace', 'new-rule-name', newOptions)
+```
+
+### Loaders
+
+Loader belong to a rule. 
+
+The API `rule.loaders` is pretty much the same as `conpack.rules`.
+
+### Plugins
+
+The API `conpack.plugins` is pretty much the same as `conpack.rule`, except for:
+
+- `conpack.plugins.add(name, Plugin, options)`: The second argument is the plugin constructor, the third one is its options as an array.
+
+
+## Contributing
+
+1. Fork it!
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -am 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request :D
+
+
+## Author
+
+**conpack** © [EGOIST](https://github.com/egoist), Released under the [MIT](./LICENSE) License.<br>
+Authored and maintained by EGOIST with help from contributors ([list](https://github.com/egoist/conpack/contributors)).
+
+> [github.com/egoist](https://github.com/egoist) · GitHub [@EGOIST](https://github.com/egoist) · Twitter [@_egoistlily](https://twitter.com/_egoistlily)

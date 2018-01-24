@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`simple 1`] = `
+Object {
+  "entry": "src/index.js",
+  "module": Object {
+    "rules": Array [
+      Object {
+        "exclude": Array [
+          /node_modules/,
+        ],
+        "test": /\\\\\\.js\\$/,
+        "use": Array [
+          Object {
+            "loader": "buble",
+            "options": Object {
+              "hehe": true,
+            },
+          },
+          Object {
+            "loader": "my-eslint-loader",
+            "options": Object {
+              "eslintrc": false,
+            },
+          },
+        ],
+      },
+    ],
+  },
+  "plugins": Array [
+    Plugin {
+      "options": Array [
+        Object {
+          "foo": 1,
+        },
+        "s",
+      ],
+    },
+  ],
+}
+`;
