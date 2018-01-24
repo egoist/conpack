@@ -14,8 +14,11 @@ module.exports = () => {
   return {
     module: {
       rules: [{
-        loader: 'babel-loader',
-        options: { presets: ['react-app'] }
+        test: /\.jsx?$/,
+        use: [{
+          loader: 'babel-loader',
+          options: { presets: ['react-app'] }
+        }]
       }]
     }
   }
@@ -48,7 +51,9 @@ Finally friend C shows friend A the power of `conpack`, letting him rewrite `cre
 ```js
 module.exports = webpackConfig => {
   const conpack = require('conpack')()
-  const jsRule = conpack.rules.add('js')
+  const jsRule = conpack.rules.add('js', {
+    test: /\.jsx?$/
+  })
   jsRule.loaders.add('babel', {
     loader: 'babel-loader',
     options: {
