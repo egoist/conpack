@@ -30,7 +30,6 @@ const createBabelWebpackConfig = require('create-babel-webpack-config')
 
 const webpackConfig = createBabelWebpackConfig()
 
-// Now friend B tries to replace `react-app` with `vue-app`:
 webpackConfig.module.rules = webpackConfig.module.rules.map(rule => {
   if (rule.test.toString() === '/\\.jsx?$/') {
     rule.use[0].loader = 'buble-loader'
@@ -44,7 +43,7 @@ module.exports = webpackConfig
 
 __THIS IS OBVIOUSLY UGLY!__
 
-Finally friend C shows friend A the power of `conpack`, letting him rewrite `webpack-babel` to followings:
+Finally friend C shows friend A the power of `conpack`, letting him rewrite `create-babel-webpack-config` to as follows:
 
 ```js
 module.exports = webpackConfig => {
