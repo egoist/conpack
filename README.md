@@ -41,8 +41,19 @@ conpack.plugins.add('uglify', webpack.optimize.UglifyJsPlugin, [
 // Remove a plugin
 conpack.plugins.remove('uglify')
 
+conpack.config = {
+  entry: './src/index.js',
+  output: {
+    path: __dirname,
+    filename: '[name].js'
+  },
+  mode: process.env.NODE_ENV || 'development'
+}
+
+module.exports = conpack.getConfig()
+// Alternatively
 module.exports = {
-  entry: './your-entry.js',
+  ...conpack.config,
   module: {
     rules: conpack.rules.toArray()
   },
