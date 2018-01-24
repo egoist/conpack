@@ -154,7 +154,7 @@ const rule = conpack.rules.add('rule-name', {
 #### Prepend a rule
 
 ```js
-conpack.rules.append('rule-name', options)
+conpack.rules.prepend('rule-name', options)
 ```
 
 #### Get a rule
