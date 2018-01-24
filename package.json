@@ -13,7 +13,8 @@
   "scripts": {
     "test": "npm run lint && jest",
     "lint": "xo",
-    "build": "bili --filename conpack.js --buble.target.node 6"
+    "build": "bili --filename conpack.js --buble.target.node 6",
+    "prepublishOnly": "npm run build"
   },
   "engines": {
     "node": ">=6"
