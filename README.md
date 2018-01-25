@@ -49,8 +49,10 @@ __THIS IS OBVIOUSLY UGLY!__
 Finally friend C shows friend A the power of `conpack`, letting him rewrite `create-babel-webpack-config` to as follows:
 
 ```js
+const Conpack = require('conpack')
+
 module.exports = () => {
-  const conpack = require('conpack')()
+  const conpack = new Conpack()
   const jsRule = conpack.rules.add('js', {
     test: /\.jsx?$/
   })

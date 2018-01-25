@@ -1,7 +1,7 @@
 import Rules from './rules'
 import Plugins from './plugins'
 
-class Conpack {
+export default class Conpack {
   constructor() {
     this.config = {}
     this.rules = new Rules()
@@ -21,8 +21,4 @@ class Conpack {
       plugins: [...this.plugins.toArray(), ...(this.config.plugins || [])]
     }
   }
-}
-
-export default function () {
-  return new Conpack()
 }
