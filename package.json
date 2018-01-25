@@ -1,6 +1,6 @@
 {
   "name": "conpack",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Manage rules and plugins in webpack config like a boss.",
   "repository": {
     "url": "egoist/conpack",
