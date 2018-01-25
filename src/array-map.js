@@ -1,3 +1,5 @@
+import { getOptions } from './utils'
+
 export default class ArrayMap {
   constructor() {
     this.store = new Map()
@@ -25,7 +27,7 @@ export default class ArrayMap {
   }
 
   update(name, getNewValue) {
-    const newValue = getNewValue(this.get(name))
+    const newValue = getOptions(getNewValue, this.get(name))
     this.store.set(name, newValue)
     return this
   }

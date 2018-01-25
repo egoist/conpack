@@ -208,6 +208,8 @@ The API `rule.loaders` is pretty much the same as `conpack.rules`.
 The API `conpack.plugins` is pretty much the same as `conpack.rule`, except for:
 
 - `conpack.plugins.add(name, Plugin, options)`: The second argument is the plugin constructor, the third one is its options as an array.
+- `conpack.plugins.update(name, Plugin, options)`: Update plugin by given `name`.
+- `conpack.plugins.updateOptions(name, options)`: Update plugin options by given `name`.
 
 
 ## Contributing

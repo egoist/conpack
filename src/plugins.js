@@ -7,10 +7,14 @@ export default class Plugins extends ArrayMap {
     return this
   }
 
-  update(name, getNewOptions) {
+  update(name, Ctor, getNewOptions) {
     const plugin = this.get(name)
-    plugin.update(getNewOptions)
+    plugin.update(Ctor, getNewOptions)
     return this
+  }
+
+  updateOptions(name, getNewOptions) {
+    return this.update(name, null, getNewOptions)
   }
 
   toArray() {

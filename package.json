@@ -36,7 +36,10 @@
     "extends": "rem",
     "envs": [
       "jest"
-    ]
+    ],
+    "rules": {
+      "import/prefer-default-export": "off"
+    }
   },
   "jest": {
     "testEnvironment": "node"

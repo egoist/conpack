@@ -1,4 +1,5 @@
 import ArrayMap from './array-map'
+import { getOptions } from './utils'
 
 export default class Rule {
   constructor(options) {
@@ -7,7 +8,7 @@ export default class Rule {
   }
 
   update(getNewOptions) {
-    this.options = getNewOptions(this.options)
+    this.options = getOptions(getNewOptions, this.options)
     return this
   }
 
