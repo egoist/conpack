@@ -33,7 +33,7 @@ export default class Conpack {
   }
 
   prepend(path, item) {
-    const value = this.get(path)
+    const value = this.get(path) || []
     this.set(path, [
       item,
       ...value
@@ -42,7 +42,7 @@ export default class Conpack {
   }
 
   append(path, item) {
-    const value = this.get(path)
+    const value = this.get(path) || []
     this.set(path, [
       ...value,
       item
