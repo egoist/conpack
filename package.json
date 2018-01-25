@@ -21,7 +21,10 @@
   },
   "author": "egoist <0x142857@gmail.com>",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "lodash.get": "^4.4.2",
+    "lodash.set": "^4.3.2"
+  },
   "devDependencies": {
     "babel-preset-env": "^1.6.1",
     "bili": "^1.6.5",

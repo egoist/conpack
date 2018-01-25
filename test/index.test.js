@@ -29,5 +29,5 @@ it('simple', () => {
     }
   }
   conpack.plugins.add('uglify', Plugin, [{ foo: 1 }, 's'])
-  expect(conpack.getConfig()).toMatchSnapshot()
+  expect(conpack.toConfig()).toMatchSnapshot()
 })

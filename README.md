@@ -82,7 +82,7 @@ jsRule.loaders.replace('babel', 'buble', {
   }
 })
 
-module.exports = conpack.getConfig()
+module.exports = conpack.toConfig()
 ```
 </details>
 
@@ -131,7 +131,7 @@ conpack.config = {
   mode: process.env.NODE_ENV || 'development'
 }
 
-module.exports = conpack.getConfig()
+module.exports = conpack.toConfig()
 // Alternatively
 module.exports = {
   ...conpack.config,
