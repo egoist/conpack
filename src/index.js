@@ -12,10 +12,13 @@ class Conpack {
     return {
       ...this.config,
       module: {
-        ...(this.config && this.config.module),
-        rules: this.rules.toArray()
+        ...this.config.module,
+        rules: [
+          ...this.rules.toArray(),
+          ...((this.config.module && this.config.module.rules) || [])
+        ]
       },
-      plugins: this.plugins.toArray()
+      plugins: [...this.plugins.toArray(), ...(this.config.plugins || [])]
     }
   }
 }
