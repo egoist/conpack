@@ -1,5 +1,6 @@
 import get from 'lodash.get'
 import set from 'lodash.set'
+import unset from 'lodash.unset'
 import Rules from './rules'
 import Plugins from './plugins'
 
@@ -30,6 +31,10 @@ export default class Conpack {
 
   set(path, value) {
     return set(this.config, path, value)
+  }
+
+  delete(path) {
+    return unset(this.config, path)
   }
 
   prepend(path, item) {

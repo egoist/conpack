@@ -23,7 +23,8 @@
   "license": "MIT",
   "dependencies": {
     "lodash.get": "^4.4.2",
-    "lodash.set": "^4.3.2"
+    "lodash.set": "^4.3.2",
+    "lodash.unset": "^4.5.2"
   },
   "devDependencies": {
     "babel-preset-env": "^1.6.1",
