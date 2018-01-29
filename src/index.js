@@ -58,4 +58,9 @@ export default class Conpack {
   has(path, item) {
     return this.get(path).includes(item)
   }
+
+  update(path, updater) {
+    this.set(path, updater(this.get(path)))
+    return this
+  }
 }
