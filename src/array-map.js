@@ -15,10 +15,10 @@ export default class ArrayMap {
   }
 
   prepend(name, options) {
-    this.store = [
+    this.store = new Map([
       [name, options],
       ...Array.from(this.store)
-    ]
+    ])
     return this
   }
 
