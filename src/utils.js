@@ -1,4 +1,4 @@
-export const getOptions = (fn, options) => {
-  const newOptions = typeof fn === 'function' ? fn(options) : options
+export const getOptions = (newOptions, options) => {
+  newOptions = typeof newOptions === 'function' ? newOptions(options) : newOptions
   return newOptions || options
 }
