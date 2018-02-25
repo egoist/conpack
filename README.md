@@ -147,7 +147,7 @@ module.exports = {
 
 ### General options
 
-For general options (other than `module.rules` and `plugin`).
+For general options (other than `module.rules` and `plugins`).
 
 Note that following methods support dot-nested path as they're using `lodash.get` `lodash.set` `lodash.unset` under the hood.
 
