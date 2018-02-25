@@ -92,7 +92,7 @@ module.exports = conpack.toConfig()
 yarn add conpack
 ```
 
-## Usage
+<details><summary>Example</summary><br>
 
 ```js
 // webpack.config.js
@@ -140,6 +140,52 @@ module.exports = {
   },
   plugins: conpack.plugins.toArray()
 }
+```
+</details>
+
+## Guide
+
+### General options
+
+For general options (other than `module.rules` and `plugin`).
+
+Note that following methods support dot-nested path as they're using `lodash.get` `lodash.set` `lodash.unset` under the hood.
+
+#### Getting value
+
+```js
+conpack.get('resolve.modules')
+```
+
+#### Setting value
+
+```js
+conpack.set('resolve.alias.foo$', 'foo-module')
+// { resolve: { alias: { foo$: 'foo-module' } } }
+```
+
+#### Delete value
+
+```js
+conpack.delete('resolve.alias.foo$')
+```
+
+#### Update value
+
+```js
+conpack.update('output.path', currentPath => currentPath + '/foo')
+```
+
+#### Append value
+
+```js
+conpack.append('entry.client', './foo.js')
+```
+
+#### Prepend value
+
+```js
+conpack.prepend('entry.client', 'webpack/hot/client')
 ```
 
 ### Rules
