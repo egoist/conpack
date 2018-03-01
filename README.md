@@ -197,6 +197,17 @@ const rule = conpack.rules.add('rule-name', {
   test: /\.js$/,
   // ...options (excluding `use`)
 })
+// =>
+// {
+//   module: {
+//     rules: [
+//       {
+//         test: /\.js$/,
+//         // ...options
+//       }
+//     ]
+//   }
+// }
 ```
 
 #### Prepend a rule
