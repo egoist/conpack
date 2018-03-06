@@ -10,6 +10,11 @@ export default class ArrayMap {
     return value
   }
 
+  delete(name) {
+    this.store.delete(name)
+    return this
+  }
+
   has(name) {
     return this.store.has(name)
   }

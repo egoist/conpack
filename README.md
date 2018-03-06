@@ -236,10 +236,10 @@ rule.update(options => {
 conpack.rules.update('rule-name', options => newOptions)
 ```
 
-#### Remove a rule
+#### Delete a rule
 
 ```js
-conpack.rules.remove('rule-name')
+conpack.rules.delete('rule-name')
 ```
 
 #### Replace a rule
