@@ -2,7 +2,8 @@
   "private": true,
   "scripts": {
     "test": "npm run lint && jest",
-    "lint": "xo"
+    "lint": "xo",
+    "postinstall": "cd packages/conpack && npm run build"
   },
   "workspaces": [
     "packages/*"
