@@ -1,0 +1,15 @@
+{
+  "name": "@conpack/babel",
+  "version": "0.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "index.js"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "conpack": "^0.3.7"
+  },
+  "xo": false
+}
