@@ -1,6 +1,6 @@
 {
   "name": "@conpack/babel",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "publishConfig": {
     "access": "public"
   },
@@ -9,7 +9,7 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "conpack": "^0.3.7"
+    "conpack": "^0.3.8"
   },
   "xo": false
 }
