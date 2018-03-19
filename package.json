@@ -1,37 +1,21 @@
 {
-  "name": "conpack",
-  "version": "0.3.7",
-  "description": "Manage rules and plugins in webpack config like a boss.",
-  "repository": {
-    "url": "egoist/conpack",
-    "type": "git"
-  },
-  "main": "dist/conpack.js",
-  "files": [
-    "dist"
-  ],
+  "private": true,
   "scripts": {
     "test": "npm run lint && jest",
-    "lint": "xo",
-    "build": "bili --filename conpack.js --buble.target.node 6",
-    "prepublishOnly": "npm run build"
+    "lint": "xo"
   },
-  "engines": {
-    "node": ">=6"
-  },
-  "author": "egoist <0x142857@gmail.com>",
-  "license": "MIT",
-  "dependencies": {
-    "lodash.get": "^4.4.2",
-    "lodash.set": "^4.3.2",
-    "lodash.unset": "^4.5.2"
-  },
+  "workspaces": [
+    "packages/*"
+  ],
   "devDependencies": {
     "babel-preset-env": "^1.6.1",
-    "bili": "^1.6.5",
-    "eslint-config-rem": "^3.0.0",
-    "jest": "^22.1.4",
-    "xo": "^0.18.0"
+    "eslint-config-rem": "^4.0.0",
+    "jest": "^22.4.2",
+    "lerna": "^2.9.0",
+    "xo": "^0.20.3"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "xo": {
     "extends": "rem",
@@ -41,8 +25,5 @@
     "rules": {
       "import/prefer-default-export": "off"
     }
-  },
-  "jest": {
-    "testEnvironment": "node"
   }
 }
